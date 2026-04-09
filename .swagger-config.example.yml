@@ -1,0 +1,85 @@
+# Smartbear Swagger Configuration Example
+# Copy this file to .swagger-config.yml and customize for your project
+
+# Your SwaggerHub organization name (required)
+# Get this by asking Claude: "List my Swagger organizations"
+organization: "your-org-name"
+
+# Portal configuration (optional - skip if not using portals)
+portal:
+  # Portal subdomain or UUID
+  id: "your-portal-subdomain"
+  # Default product slug for this project
+  defaultProduct: "your-product-slug"
+  # Auto-publish changes (true = live, false = preview only)
+  autoPublish: false
+
+# GitHub repository settings
+github:
+  # Remote name (usually "origin")
+  remote: "origin"
+  # Default branch
+  branch: "main"
+  # Commit message template (use {apiName} and {version} placeholders)
+  commitTemplate: "API update: {apiName} v{version} - validated and published"
+
+# API specification settings
+api:
+  # Default version for new APIs
+  defaultVersion: "1.0.0"
+  # OpenAPI format version
+  specFormat: "openapi-3.1.0"
+  # Where to store OpenAPI specs
+  specDirectory: "./specs"
+  # Auto-increment version on each update
+  autoIncrement: false
+
+# Validation settings
+validation:
+  # Run validation before every publish
+  enforceValidation: true
+  # Fail on errors (vs. warnings only)
+  failOnErrors: true
+  # Automatically attempt to fix issues
+  autoFix: true
+  # Re-validate after fixes
+  revalidate: true
+
+# Documentation settings
+documentation:
+  # Include examples in generated specs
+  includeExamples: true
+  # Generate documentation from code comments
+  generateFromCode: true
+  # Update portal on every API publish
+  syncPortal: true
+
+# Code generation preferences
+codeGeneration:
+  # Preferred language if not specified
+  defaultLanguage: "typescript"
+  # Framework preferences by language
+  frameworks:
+    typescript: "express"
+    python: "fastapi"
+    java: "spring-boot"
+    csharp: "aspnet-core"
+  # Include authentication scaffolding
+  includeAuth: true
+  # Include input validation
+  includeValidation: true
+  # Include error handling middleware
+  includeErrorHandling: true
+  # Generate unit test stubs
+  generateTests: true
+
+# Portal publishing settings
+portalPublishing:
+  # Section names for different doc types
+  apiReferenceSection: "API Reference"
+  guidesSection: "Guides"
+  tutorialsSection: "Tutorials"
+  # Table of contents structure
+  createTOC: true
+  # Publish to preview first
+  usePreview: true
