@@ -1,0 +1,17 @@
+{
+  "name": "swagger-hub-agent-skills",
+  "owner": {
+    "name": "SmartBear"
+  },
+  "metadata": {
+    "description": "Claude Code skills for the full SwaggerHub API lifecycle — generate, validate, publish, and document APIs with Smartbear's SwaggerHub and Developer Portal.",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "swagger-hub",
+      "source": "./plugins/swagger-hub",
+      "description": "End-to-end API lifecycle management with Smartbear SwaggerHub — generate API code, validate governance, publish to SwaggerHub registry, sync Developer Portal documentation, and push to GitHub."
+    }
+  ]
+}

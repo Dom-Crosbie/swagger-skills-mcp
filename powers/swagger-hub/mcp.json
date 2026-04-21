@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "smartbear-joe": {
+      "command": "npx",
+      "args": ["-y", "@smartbear/smartbear-mcp"],
+      "env": {
+        "SWAGGERHUB_API_KEY": "${SWAGGERHUB_API_KEY}"
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# Local Claude Code settings (contains personal permissions/credentials)
+.claude/settings.local.json
+
+# Editor
+.vscode/
