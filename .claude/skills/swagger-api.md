@@ -1,5 +1,5 @@
 ---
-description: End-to-end API development workflow with Smartbear Swagger integration. Generates API code, validates against governance rules, updates OpenAPI specs, synchronizes portal documentation, and publishes to GitHub. USE FOR: build API, create API, update API with governance, standardize API, validate API spec, sync Swagger documentation, publish API to portal, API development workflow. DO NOT USE FOR: general coding tasks without API/Swagger context, frontend UI development, database schema design.
+description: "End-to-end API development workflow with Smartbear Swagger integration. Generates API code, validates against governance rules, updates OpenAPI specs, synchronizes portal documentation, and publishes to GitHub. USE FOR: build API, create API, update API with governance, standardize API, validate API spec, sync Swagger documentation, publish API to portal, API development workflow. DO NOT USE FOR: general coding tasks without API/Swagger context, frontend UI development, database schema design."
 applyTo:
   - kind: file
     pattern: "**/*.{ts,js,py,java,cs,go}"
@@ -12,7 +12,7 @@ allowedTools:
   - Glob
   - Grep
   - Bash
-  - mcp__smartbear-joe__swagger_*
+  - mcp__smartbear-mcp__swagger_*
 ---
 
 # API Development with Smartbear Swagger Skill
@@ -38,12 +38,12 @@ When a user requests API development (build, create, or update), follow this com
    - API metadata (title, version, description, contact info)
 
 ### Phase 2: Validation & Standardization
-4. **Organization Check**: Use `mcp__smartbear-joe__swagger_list_organizations` to get available organizations
-5. **Scan for Issues**: Use `mcp__smartbear-joe__swagger_scan_api_standardization` with the organization name and OpenAPI spec
+4. **Organization Check**: Use `mcp__smartbear-mcp__swagger_list_organizations` to get available organizations
+5. **Scan for Issues**: Use `mcp__smartbear-mcp__swagger_scan_api_standardization` with the organization name and OpenAPI spec
    - Analyze returned errors and warnings
    - Report validation issues to the user
 6. **Auto-Standardize** (if API already exists in SwaggerHub):
-   - Use `mcp__smartbear-joe__swagger_standardize_api` to automatically fix governance violations
+   - Use `mcp__smartbear-mcp__swagger_standardize_api` to automatically fix governance violations
 7. **Manual Fixes** (if needed):
    - For new APIs, manually correct the OpenAPI spec based on scan results
    - Re-scan to verify compliance
@@ -53,19 +53,19 @@ When a user requests API development (build, create, or update), follow this com
 9. **Verify Alignment**: Ensure code and OpenAPI spec are fully synchronized
 
 ### Phase 4: SwaggerHub Registry Update
-10. **Create or Update API**: Use `mcp__smartbear-joe__swagger_create_or_update_api`
+10. **Create or Update API**: Use `mcp__smartbear-mcp__swagger_create_or_update_api`
     - Parameters: `owner` (org name), `apiName`, `definition` (OpenAPI spec as string)
     - Captures the SwaggerHub URL from the response
 
 ### Phase 5: Portal Documentation
-11. **Check Portal Setup**: Use `mcp__smartbear-joe__swagger_list_portals` and `mcp__smartbear-joe__swagger_list_portal_products`
-12. **Create or Update Product**: Use `mcp__smartbear-joe__swagger_create_portal_product` if needed
-13. **Get Product Sections**: Use `mcp__smartbear-joe__swagger_list_portal_product_sections` with embed `['tableOfContents']`
+11. **Check Portal Setup**: Use `mcp__smartbear-mcp__swagger_list_portals` and `mcp__smartbear-mcp__swagger_list_portal_products`
+12. **Create or Update Product**: Use `mcp__smartbear-mcp__swagger_create_portal_product` if needed
+13. **Get Product Sections**: Use `mcp__smartbear-mcp__swagger_list_portal_product_sections` with embed `['tableOfContents']`
 14. **Update Documentation**:
     - For API reference: Create table of contents entry with type `apiUrl` pointing to SwaggerHub API
-    - For guides/tutorials: Use `mcp__smartbear-joe__swagger_update_document` with HTML or Markdown content
-    - Use `mcp__smartbear-joe__swagger_create_table_of_contents` for new documentation sections
-15. **Publish Product**: Use `mcp__smartbear-joe__swagger_publish_portal_product` with `preview: false` for live
+    - For guides/tutorials: Use `mcp__smartbear-mcp__swagger_update_document` with HTML or Markdown content
+    - Use `mcp__smartbear-mcp__swagger_create_table_of_contents` for new documentation sections
+15. **Publish Product**: Use `mcp__smartbear-mcp__swagger_publish_portal_product` with `preview: false` for live
 
 ### Phase 6: GitHub Publication
 16. **Prepare Repository**: Ensure git is initialized and remote is configured
@@ -81,29 +81,29 @@ When a user requests API development (build, create, or update), follow this com
 
 | Tool | Purpose |
 |------|---------|
-| `mcp__smartbear-joe__swagger_list_organizations` | Get available organizations |
-| `mcp__smartbear-joe__swagger_scan_api_standardization` | Scan spec for governance violations |
-| `mcp__smartbear-joe__swagger_standardize_api` | Auto-fix governance issues |
-| `mcp__smartbear-joe__swagger_create_or_update_api` | Create/update API in SwaggerHub |
-| `mcp__smartbear-joe__swagger_get_api_definition` | Retrieve existing API spec |
-| `mcp__smartbear-joe__swagger_search_apis_and_domains` | Find APIs by query |
-| `mcp__smartbear-joe__swagger_create_api_from_prompt` | Create API from natural language |
-| `mcp__smartbear-joe__swagger_list_portals` | List available portals |
-| `mcp__smartbear-joe__swagger_get_portal` | Get portal details |
-| `mcp__smartbear-joe__swagger_list_portal_products` | List products in a portal |
-| `mcp__smartbear-joe__swagger_create_portal_product` | Create new product |
-| `mcp__smartbear-joe__swagger_get_portal_product` | Get product details |
-| `mcp__smartbear-joe__swagger_update_portal_product` | Update product details |
-| `mcp__smartbear-joe__swagger_list_portal_product_sections` | Get sections and table of contents |
-| `mcp__smartbear-joe__swagger_publish_portal_product` | Publish product live or as preview |
-| `mcp__smartbear-joe__swagger_create_table_of_contents` | Add new doc section |
-| `mcp__smartbear-joe__swagger_list_table_of_contents` | List existing ToC entries |
-| `mcp__smartbear-joe__swagger_delete_table_of_contents` | Remove ToC entry |
-| `mcp__smartbear-joe__swagger_update_document` | Update HTML/Markdown content |
-| `mcp__smartbear-joe__swagger_get_document` | Retrieve document content |
-| `mcp__smartbear-joe__swagger_create_portal` | Create a new portal |
-| `mcp__smartbear-joe__swagger_update_portal` | Update portal settings |
-| `mcp__smartbear-joe__swagger_delete_portal_product` | Delete a portal product |
+| `mcp__smartbear-mcp__swagger_list_organizations` | Get available organizations |
+| `mcp__smartbear-mcp__swagger_scan_api_standardization` | Scan spec for governance violations |
+| `mcp__smartbear-mcp__swagger_standardize_api` | Auto-fix governance issues |
+| `mcp__smartbear-mcp__swagger_create_or_update_api` | Create/update API in SwaggerHub |
+| `mcp__smartbear-mcp__swagger_get_api_definition` | Retrieve existing API spec |
+| `mcp__smartbear-mcp__swagger_search_apis_and_domains` | Find APIs by query |
+| `mcp__smartbear-mcp__swagger_create_api_from_prompt` | Create API from natural language |
+| `mcp__smartbear-mcp__swagger_list_portals` | List available portals |
+| `mcp__smartbear-mcp__swagger_get_portal` | Get portal details |
+| `mcp__smartbear-mcp__swagger_list_portal_products` | List products in a portal |
+| `mcp__smartbear-mcp__swagger_create_portal_product` | Create new product |
+| `mcp__smartbear-mcp__swagger_get_portal_product` | Get product details |
+| `mcp__smartbear-mcp__swagger_update_portal_product` | Update product details |
+| `mcp__smartbear-mcp__swagger_list_portal_product_sections` | Get sections and table of contents |
+| `mcp__smartbear-mcp__swagger_publish_portal_product` | Publish product live or as preview |
+| `mcp__smartbear-mcp__swagger_create_table_of_contents` | Add new doc section |
+| `mcp__smartbear-mcp__swagger_list_table_of_contents` | List existing ToC entries |
+| `mcp__smartbear-mcp__swagger_delete_table_of_contents` | Remove ToC entry |
+| `mcp__smartbear-mcp__swagger_update_document` | Update HTML/Markdown content |
+| `mcp__smartbear-mcp__swagger_get_document` | Retrieve document content |
+| `mcp__smartbear-mcp__swagger_create_portal` | Create a new portal |
+| `mcp__smartbear-mcp__swagger_update_portal` | Update portal settings |
+| `mcp__smartbear-mcp__swagger_delete_portal_product` | Delete a portal product |
 
 ## Best Practices
 

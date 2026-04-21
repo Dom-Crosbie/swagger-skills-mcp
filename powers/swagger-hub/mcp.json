@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "smartbear-joe": {
+    "smartbear-mcp": {
       "command": "npx",
       "args": ["-y", "@smartbear/smartbear-mcp"],
       "env": {

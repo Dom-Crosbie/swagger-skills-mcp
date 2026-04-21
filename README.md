@@ -57,7 +57,7 @@ Configure the MCP server in `~/.claude/settings.json`:
 ```json
 {
   "mcpServers": {
-    "smartbear-joe": {
+    "smartbear-mcp": {
       "command": "npx",
       "args": ["-y", "@smartbear/smartbear-mcp"],
       "env": {
@@ -183,7 +183,7 @@ swagger-hub-agent-skills/
 
 ## MCP Tools Reference
 
-All tools are provided by the `smartbear-joe` MCP server, prefixed `mcp__smartbear-joe__swagger_`:
+All tools are provided by the `smartbear-mcp` MCP server, prefixed `mcp__smartbear-mcp__swagger_`:
 
 | Tool | Purpose |
 |------|---------|

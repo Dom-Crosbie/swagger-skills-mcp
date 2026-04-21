@@ -33,30 +33,30 @@ The spec must include:
 
 ### 4. Scan for Governance Issues
 ```
-org = mcp__smartbear-joe__swagger_list_organizations → first org
-result = mcp__smartbear-joe__swagger_scan_api_standardization(org, specContent)
+org = mcp__smartbear-mcp__swagger_list_organizations → first org
+result = mcp__smartbear-mcp__swagger_scan_api_standardization(org, specContent)
 ```
 Report all errors and warnings. Fix errors before proceeding.
 
 ### 5. Auto-Standardize (if API exists)
 ```
-mcp__smartbear-joe__swagger_standardize_api(owner, apiName)
+mcp__smartbear-mcp__swagger_standardize_api(owner, apiName)
 ```
 If this succeeds, retrieve the corrected spec and update the local file.
 
 ### 6. Publish to SwaggerHub
 ```
-mcp__smartbear-joe__swagger_create_or_update_api(owner, apiName, specContent)
+mcp__smartbear-mcp__swagger_create_or_update_api(owner, apiName, specContent)
 ```
 Capture the returned SwaggerHub URL.
 
 ### 7. Update Developer Portal
 ```
-portals = mcp__smartbear-joe__swagger_list_portals()
-products = mcp__smartbear-joe__swagger_list_portal_products(portalId)
-sections = mcp__smartbear-joe__swagger_list_portal_product_sections(portalId, productId, embed: ['tableOfContents'])
-mcp__smartbear-joe__swagger_create_table_of_contents(portalId, productId, sectionId, {type: 'apiUrl', url: swaggerHubUrl})
-mcp__smartbear-joe__swagger_publish_portal_product(portalId, productId, preview: false)
+portals = mcp__smartbear-mcp__swagger_list_portals()
+products = mcp__smartbear-mcp__swagger_list_portal_products(portalId)
+sections = mcp__smartbear-mcp__swagger_list_portal_product_sections(portalId, productId, embed: ['tableOfContents'])
+mcp__smartbear-mcp__swagger_create_table_of_contents(portalId, productId, sectionId, {type: 'apiUrl', url: swaggerHubUrl})
+mcp__smartbear-mcp__swagger_publish_portal_product(portalId, productId, preview: false)
 ```
 
 ### 8. Commit and Push

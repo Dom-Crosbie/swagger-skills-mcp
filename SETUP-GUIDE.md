@@ -40,7 +40,7 @@ Test that Smartbear tools are available:
 
 1. Open Claude Code in VS Code
 2. Type: "List my Swagger organizations"
-3. Claude should use `mcp_smartbear-joe_swagger_list_organizations` to retrieve them
+3. Claude should use `mcp_smartbear-mcp_swagger_list_organizations` to retrieve them
 
 If this fails, check your MCP server configuration.
 

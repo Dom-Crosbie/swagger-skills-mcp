@@ -1,5 +1,5 @@
 ---
-description: Manage Smartbear Developer Portal - create/update products, sync documentation, manage table of contents, and publish. USE FOR: update portal, sync docs, publish documentation, create portal product, add API to portal, update developer portal. DO NOT USE FOR: generating API code, validating specs, git operations.
+description: "Manage Smartbear Developer Portal - create/update products, sync documentation, manage table of contents, and publish. USE FOR: update portal, sync docs, publish documentation, create portal product, add API to portal, update developer portal. DO NOT USE FOR: generating API code, validating specs, git operations."
 applyTo:
   - kind: conversation
     pattern: "(portal|documentation|publish|sync).*(docs?|product|portal|developer)"
@@ -8,22 +8,22 @@ allowedTools:
   - Write
   - Edit
   - Glob
-  - mcp__smartbear-joe__swagger_list_portals
-  - mcp__smartbear-joe__swagger_get_portal
-  - mcp__smartbear-joe__swagger_update_portal
-  - mcp__smartbear-joe__swagger_create_portal
-  - mcp__smartbear-joe__swagger_list_portal_products
-  - mcp__smartbear-joe__swagger_get_portal_product
-  - mcp__smartbear-joe__swagger_create_portal_product
-  - mcp__smartbear-joe__swagger_update_portal_product
-  - mcp__smartbear-joe__swagger_delete_portal_product
-  - mcp__smartbear-joe__swagger_list_portal_product_sections
-  - mcp__smartbear-joe__swagger_publish_portal_product
-  - mcp__smartbear-joe__swagger_create_table_of_contents
-  - mcp__smartbear-joe__swagger_list_table_of_contents
-  - mcp__smartbear-joe__swagger_delete_table_of_contents
-  - mcp__smartbear-joe__swagger_update_document
-  - mcp__smartbear-joe__swagger_get_document
+  - mcp__smartbear-mcp__swagger_list_portals
+  - mcp__smartbear-mcp__swagger_get_portal
+  - mcp__smartbear-mcp__swagger_update_portal
+  - mcp__smartbear-mcp__swagger_create_portal
+  - mcp__smartbear-mcp__swagger_list_portal_products
+  - mcp__smartbear-mcp__swagger_get_portal_product
+  - mcp__smartbear-mcp__swagger_create_portal_product
+  - mcp__smartbear-mcp__swagger_update_portal_product
+  - mcp__smartbear-mcp__swagger_delete_portal_product
+  - mcp__smartbear-mcp__swagger_list_portal_product_sections
+  - mcp__smartbear-mcp__swagger_publish_portal_product
+  - mcp__smartbear-mcp__swagger_create_table_of_contents
+  - mcp__smartbear-mcp__swagger_list_table_of_contents
+  - mcp__smartbear-mcp__swagger_delete_table_of_contents
+  - mcp__smartbear-mcp__swagger_update_document
+  - mcp__smartbear-mcp__swagger_get_document
 ---
 
 # Swagger Portal Management Skill
@@ -34,9 +34,9 @@ You are a developer portal specialist. Manage portal products, documentation, an
 
 ### List Portals and Products
 ```
-1. mcp__smartbear-joe__swagger_list_portals → get portal IDs
-2. mcp__smartbear-joe__swagger_list_portal_products (portalId) → get products
-3. mcp__smartbear-joe__swagger_get_portal_product (portalId, productId) → get details
+1. mcp__smartbear-mcp__swagger_list_portals → get portal IDs
+2. mcp__smartbear-mcp__swagger_list_portal_products (portalId) → get products
+3. mcp__smartbear-mcp__swagger_get_portal_product (portalId, productId) → get details
 ```
 
 ### Add API Reference to Portal

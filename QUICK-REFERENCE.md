@@ -48,21 +48,21 @@ List products in portal [portal-id]
 ## Key MCP Tools
 
 ### Validation
-- `mcp_smartbear-joe_swagger_scan_api_standardization` - Check governance
-- `mcp_smartbear-joe_swagger_standardize_api` - Auto-fix issues
+- `mcp_smartbear-mcp_swagger_scan_api_standardization` - Check governance
+- `mcp_smartbear-mcp_swagger_standardize_api` - Auto-fix issues
 
 ### Registry
-- `mcp_smartbear-joe_swagger_create_or_update_api` - Publish API
-- `mcp_smartbear-joe_swagger_get_api_definition` - Get existing spec
-- `mcp_smartbear-joe_swagger_search_apis_and_domains` - Search APIs
+- `mcp_smartbear-mcp_swagger_create_or_update_api` - Publish API
+- `mcp_smartbear-mcp_swagger_get_api_definition` - Get existing spec
+- `mcp_smartbear-mcp_swagger_search_apis_and_domains` - Search APIs
 
 ### Portal
-- `mcp_smartbear-joe_swagger_list_portals` - List portals
-- `mcp_smartbear-joe_swagger_list_portal_products` - List products
-- `mcp_smartbear-joe_swagger_publish_portal_product` - Publish docs
+- `mcp_smartbear-mcp_swagger_list_portals` - List portals
+- `mcp_smartbear-mcp_swagger_list_portal_products` - List products
+- `mcp_smartbear-mcp_swagger_publish_portal_product` - Publish docs
 
 ### Organization
-- `mcp_smartbear-joe_swagger_list_organizations` - Get orgs
+- `mcp_smartbear-mcp_swagger_list_organizations` - Get orgs
 
 ## File Locations
 

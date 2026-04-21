@@ -297,7 +297,7 @@ git push origin main
 3. Add missing tools to `allowedTools`:
    ```yaml
    allowedTools:
-     - mcp_smartbear-joe_swagger_*
+     - mcp_smartbear-mcp_swagger_*
    ```
 
 ---

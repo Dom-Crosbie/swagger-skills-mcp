@@ -34,25 +34,25 @@ Create a compliant OpenAPI 3.1 spec with:
 
 ### Phase 3 — Validation & Standardization
 ```
-mcp__smartbear-joe__swagger_list_organizations       → get org name
-mcp__smartbear-joe__swagger_scan_api_standardization → scan spec
-mcp__smartbear-joe__swagger_standardize_api          → auto-fix (if API exists)
+mcp__smartbear-mcp__swagger_list_organizations       → get org name
+mcp__smartbear-mcp__swagger_scan_api_standardization → scan spec
+mcp__smartbear-mcp__swagger_standardize_api          → auto-fix (if API exists)
 ```
 
 ### Phase 4 — SwaggerHub Registry
 ```
-mcp__smartbear-joe__swagger_create_or_update_api     → publish spec
+mcp__smartbear-mcp__swagger_create_or_update_api     → publish spec
 ```
 Returns a SwaggerHub URL: `https://app.swaggerhub.com/apis/{owner}/{apiName}/1.0.0`
 
 ### Phase 5 — Portal Documentation
 ```
-mcp__smartbear-joe__swagger_list_portals
-mcp__smartbear-joe__swagger_list_portal_products
-mcp__smartbear-joe__swagger_create_portal_product    → if new
-mcp__smartbear-joe__swagger_list_portal_product_sections
-mcp__smartbear-joe__swagger_create_table_of_contents → add API reference
-mcp__smartbear-joe__swagger_publish_portal_product   → go live
+mcp__smartbear-mcp__swagger_list_portals
+mcp__smartbear-mcp__swagger_list_portal_products
+mcp__smartbear-mcp__swagger_create_portal_product    → if new
+mcp__smartbear-mcp__swagger_list_portal_product_sections
+mcp__smartbear-mcp__swagger_create_table_of_contents → add API reference
+mcp__smartbear-mcp__swagger_publish_portal_product   → go live
 ```
 
 ### Phase 6 — GitHub Publication
