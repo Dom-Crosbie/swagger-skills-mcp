@@ -82,14 +82,25 @@ allowedTools:
 
 ---
 
-## STEP 4: Create or Update in SwaggerHub
+## STEP 4: Publish to SwaggerHub & Standardize (BOTH REQUIRED)
 
 12. Upload spec: `mcp__smartbear-joe__swagger_create_or_update_api`
     - owner: organization name from Step 1
-    - apiName: [descriptive name from user's domain]
+    - apiName: [descriptive name from user's domain, no spaces]
     - definition: the validated OpenAPI spec from Step 3
 13. Capture the SwaggerHub URL from response
-14. Report URL to user
+
+14. **STANDARDIZE (MANDATORY)**: `mcp__smartbear-joe__swagger_standardize_api`
+    - owner: organization name
+    - apiName: same apiName used above
+    - This MUST run on every new or updated API — do not skip
+    - Wait for completion before proceeding
+
+15. **RE-SCAN after standardize**: `mcp__smartbear-joe__swagger_scan_api_standardization`
+    - Confirm zero errors after standardization
+    - If new errors introduced, fix and standardize again
+
+16. Report SwaggerHub URL to user
 
 ---
 
@@ -157,6 +168,8 @@ Before completing, verify:
 - ✅ Step 2: Code and spec generated using same patterns
 - ✅ Step 3: Spec scanned and zero errors confirmed
 - ✅ Step 4: API published to SwaggerHub with URL
+- ✅ Step 4: `swagger_standardize_api` run after publish
+- ✅ Step 4: Re-scan after standardize shows zero errors
 - ✅ Step 5: Portal documentation created with 4 sections
 - ✅ Step 5: Portal published (not preview)
 - ✅ Step 6: Pushed to GitHub
@@ -167,9 +180,23 @@ Before completing, verify:
 
 ## If Errors Occur
 
-**Validation Loop Stuck**: If same error repeats 3+ times, analyze deeply:
-- Is the error about naming? Compare to similar API's exact naming
-- Is the error about structure? Copy the exact structure from similar API
+**Common Governance Violations — Fix These Manually if Standardize Doesn't Resolve Them**:
+
+| Error | Fix |
+|-------|-----|
+| `sps-unknown-error-format` | Add RFC 7807 schema to every error response: `{ type, title, status, detail, instance }` |
+| `sps-no-collection-paging-capability` | Wrap list responses: `{ data: [...], paging: { total, limit, offset } }` |
+| `sps-missing-pagination-query-parameters` | Add `limit` (int32) and `offset` (int32) to all collection GET endpoints |
+| `sps-hosts-spscommerce-domain` | Set `servers[].url` to `https://api.spscommerce.com/...` |
+| `owasp:api4:2019-string-limit` | Add `maxLength` to every string property |
+| Naming violations | Rename all params/properties to camelCase — no underscores |
+| Missing security | Add `securitySchemes` with Bearer token, apply at root |
+
+After each manual fix: standardize again, then re-scan. Loop until zero critical errors.
+
+**Validation Loop Stuck**: If same error repeats 3+ times:
+- Apply the manual fix from the table above
+- Run standardize again
 - Ask user: "Which existing API should I match exactly?"
 
 **Portal Not Found**: Create a new product:

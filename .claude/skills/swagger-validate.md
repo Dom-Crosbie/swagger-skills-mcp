@@ -37,24 +37,31 @@ You are an API governance specialist. Validate OpenAPI specs against organizatio
   - `definition`: the full OpenAPI spec content as a string
 - Categorize and report all returned errors and warnings clearly
 
-### Step 4: Auto-Standardize (if API exists in SwaggerHub)
-- If the API is already published, call `mcp__smartbear-joe__swagger_standardize_api`
-- Retrieve the corrected spec and show what changed
+### Step 4: Standardize (ALWAYS RUN — not optional)
+- Call `mcp__smartbear-joe__swagger_standardize_api` with owner and apiName
+- This must run whether the API is new or existing
+- Wait for completion
 
-### Step 5: Manual Fixes (if needed)
-For new APIs or when auto-fix isn't available, fix common issues:
+### Step 5: Re-scan After Standardize
+- Call `mcp__smartbear-joe__swagger_scan_api_standardization` again
+- If new critical errors remain, fix them and standardize again
+- Repeat until zero critical errors
 
-| Violation Type | Fix |
-|---------------|-----|
-| Missing `description` | Add description to operation, parameter, or schema |
-| Naming convention | Rename to camelCase/kebab-case per org standard |
-| Missing examples | Add `example` or `examples` to schema properties |
+### Step 6: Manual Fixes (if standardize did not resolve all errors)
+For violations that auto-standardize cannot fix:
+
+| Violation | Fix |
+|-----------|-----|
+| `sps-unknown-error-format` | Add RFC 7807 error schema to every error response (`type`, `title`, `status`, `detail`, `instance`) |
+| `sps-no-collection-paging-capability` | Wrap array responses: `{ data: [...], paging: { total, limit, offset } }` |
+| `sps-missing-pagination-query-parameters` | Add `limit` and `offset` query params to collection GET endpoints |
+| `sps-hosts-spscommerce-domain` | Set server URL to `https://api.spscommerce.com/...` |
+| `owasp:api4:2019-string-limit` | Add `maxLength` to all string properties |
+| Missing `description` | Add description to every operation, parameter, and schema |
 | Missing `operationId` | Add unique operationId to each operation |
-| Missing security | Add security scheme and apply to secured endpoints |
-| Missing error responses | Add 400, 401, 404, 500 responses |
+| Missing security | Add security scheme and apply to all endpoints |
 
-### Step 6: Re-scan to Verify
-After applying fixes, re-scan to confirm all violations are resolved.
+After each manual fix, standardize and re-scan until zero critical errors.
 
 ## Output Format
 

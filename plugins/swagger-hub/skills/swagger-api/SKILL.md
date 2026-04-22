@@ -32,16 +32,19 @@ Create a compliant OpenAPI 3.1 spec with:
 - Authentication schemes (Bearer JWT, API Key, OAuth2)
 - Standard error responses (400, 401, 404, 422, 500)
 
-### Phase 3 — Validation & Standardization
+### Phase 3 — Validation & Standardization (Loop until zero errors)
 ```
 mcp__smartbear-joe__swagger_list_organizations       → get org name
-mcp__smartbear-joe__swagger_scan_api_standardization → scan spec
-mcp__smartbear-joe__swagger_standardize_api          → auto-fix (if API exists)
+mcp__smartbear-joe__swagger_scan_api_standardization → scan spec, collect all errors
+  → fix each error, re-scan
+  → repeat until zero critical errors
 ```
 
-### Phase 4 — SwaggerHub Registry
+### Phase 4 — SwaggerHub Registry + Standardize (BOTH REQUIRED)
 ```
 mcp__smartbear-joe__swagger_create_or_update_api     → publish spec
+mcp__smartbear-joe__swagger_standardize_api          → ALWAYS run after every publish
+mcp__smartbear-joe__swagger_scan_api_standardization → re-scan to confirm zero errors
 ```
 Returns a SwaggerHub URL: `https://app.swaggerhub.com/apis/{owner}/{apiName}/1.0.0`
 
@@ -69,6 +72,7 @@ git push origin main
 ✅ Phase 2: OpenAPI 3.1 spec created
 ⚠️  Phase 3: 2 governance violations found → auto-fixed
 ✅ Phase 4: Published → https://app.swaggerhub.com/apis/acme/orders-api/1.0.0
+✅ Phase 4: Standardized → zero errors confirmed
 ✅ Phase 5: Portal product updated and published live
 ✅ Phase 6: Committed and pushed (abc1234)
 ```
