@@ -37,16 +37,16 @@ When a user requests API development (build, create, or update), follow this com
    - Error responses
    - API metadata (title, version, description, contact info)
 
-### Phase 2: Validation & Standardization
+### Phase 2: Validation & Standardization (REQUIRED - DO NOT SKIP)
 4. **Organization Check**: Use `mcp__smartbear-mcp__swagger_list_organizations` to get available organizations
 5. **Scan for Issues**: Use `mcp__smartbear-mcp__swagger_scan_api_standardization` with the organization name and OpenAPI spec
-   - Analyze returned errors and warnings
-   - Report validation issues to the user
-6. **Auto-Standardize** (if API already exists in SwaggerHub):
-   - Use `mcp__smartbear-mcp__swagger_standardize_api` to automatically fix governance violations
-7. **Manual Fixes** (if needed):
-   - For new APIs, manually correct the OpenAPI spec based on scan results
-   - Re-scan to verify compliance
+   - If errors returned: MUST fix them before proceeding
+   - Report all issues to the user with fixes applied
+6. **Fix Governance Violations**:
+   - Use `mcp__smartbear-mcp__swagger_standardize_api` to auto-fix (for existing APIs)
+   - For new APIs: manually correct spec based on scan results
+   - Re-scan with updated spec to verify 100% compliance
+   - If re-scan shows errors, continue fixing until ZERO errors remain
 
 ### Phase 3: Apply Changes to Code
 8. **Code Refinement**: Update the API implementation based on standardization feedback
@@ -57,15 +57,32 @@ When a user requests API development (build, create, or update), follow this com
     - Parameters: `owner` (org name), `apiName`, `definition` (OpenAPI spec as string)
     - Captures the SwaggerHub URL from the response
 
-### Phase 5: Portal Documentation
-11. **Check Portal Setup**: Use `mcp__smartbear-mcp__swagger_list_portals` and `mcp__smartbear-mcp__swagger_list_portal_products`
-12. **Create or Update Product**: Use `mcp__smartbear-mcp__swagger_create_portal_product` if needed
-13. **Get Product Sections**: Use `mcp__smartbear-mcp__swagger_list_portal_product_sections` with embed `['tableOfContents']`
-14. **Update Documentation**:
-    - For API reference: Create table of contents entry with type `apiUrl` pointing to SwaggerHub API
-    - For guides/tutorials: Use `mcp__smartbear-mcp__swagger_update_document` with HTML or Markdown content
-    - Use `mcp__smartbear-mcp__swagger_create_table_of_contents` for new documentation sections
-15. **Publish Product**: Use `mcp__smartbear-mcp__swagger_publish_portal_product` with `preview: false` for live
+### Phase 5: Portal Documentation (REQUIRED - MUST PUBLISH)
+11. **Find Portal & Product**:
+    - Use `mcp__smartbear-mcp__swagger_list_portals` to get available portals
+    - Use `mcp__smartbear-mcp__swagger_list_portal_products` to list products in each portal
+    - Ask user which portal/product to use, or find the most relevant existing product (e.g., "Vehicle Portal" for a rental API)
+12. **Create or Reuse Product**:
+    - If relevant product exists: Update it with new API documentation
+    - If no relevant product: Create new product with clear name and slug
+13. **Get Product Sections**: Use `mcp__smartbear-mcp__swagger_list_portal_product_sections` with embed `['tableOfContents']` to see existing sections
+14. **Create Documentation Structure** (MUST include all of these):
+    - **API Reference**: Create table of contents entry with type `apiUrl` pointing to the published SwaggerHub API spec
+    - **Getting Started**: Create new section with:
+      - Setup instructions (how to run locally, dependencies, environment setup)
+      - Authentication details (API key/JWT/OAuth explanation)
+    - **Usage Examples**: Create new section with:
+      - cURL command examples for each endpoint (GET, POST, PUT, DELETE)
+      - Request/response examples with sample data
+      - Common use cases (e.g., "Book a boat", "Check availability")
+    - **Installation Guide**: If needed, create guide for integrating the API into client applications
+15. **Generate Documentation Content**: For each section, create actual markdown/HTML content that's viewable in the portal:
+    - Use `mcp__smartbear-mcp__swagger_create_table_of_contents` to create new doc sections
+    - Use `mcp__smartbear-mcp__swagger_update_document` to add the actual content (markdown or HTML)
+    - Embed code examples, sample requests/responses, and practical guidance
+16. **Publish Product**: Use `mcp__smartbear-mcp__swagger_publish_portal_product` with `preview: false` to make documentation LIVE and accessible
+    - Verify product is visible in portal navigation after publishing
+    - Provide user with direct portal URL to access documentation
 
 ### Phase 6: GitHub Publication
 16. **Prepare Repository**: Ensure git is initialized and remote is configured
@@ -120,12 +137,13 @@ When a user requests API development (build, create, or update), follow this com
 - For new APIs, do a test upload to get organization-specific feedback
 - Keep specs consistent with organization governance rules
 
-### Portal Organization
-- Use clear, descriptive product names and slugs
-- Organize documentation logically with table of contents hierarchy
-- Keep API references separate from tutorials/guides
-- Use preview mode to test before publishing live
-- Update existing products rather than creating duplicates
+### Portal Organization (CRITICAL)
+- **ALWAYS create portal documentation** — without it, the API is invisible to users
+- **Reuse existing products** when relevant (e.g., "Vehicle Portal" for rental APIs) rather than creating new ones
+- Create separate table of contents sections for: API Reference, Getting Started, Usage Examples, Installation
+- Include concrete cURL examples and sample requests/responses in documentation
+- Use preview mode ONLY for testing; ALWAYS publish to production with `preview: false`
+- After publishing, verify the product is live and accessible via the portal URL
 
 ### Git Workflow
 - Commit code and specs together to maintain sync
@@ -134,12 +152,32 @@ When a user requests API development (build, create, or update), follow this com
 
 ## Error Handling
 
-**Validation Errors**: Analyze each one:
+**Validation Errors (DO NOT PROCEED without fixing)**:
 - Naming convention violations → Fix identifiers to match org standards
 - Missing required fields → Add descriptions, examples, or metadata
 - Security issues → Ensure proper authentication schemes are defined
+- Re-scan after each fix until zero errors remain
 
-**Portal Not Found**: Use `list_portals` to discover available portals. If none exist, inform the user that portal setup is needed.
+**Portal Not Found**: 
+- Use `list_portals` to discover available portals
+- Use `list_portal_products` to find existing products
+- If no portal exists, create one: `create_portal`
+- If no relevant product exists, create one: `create_portal_product`
+- NEVER skip portal documentation — it's required for API usability
+
+**Portal Publish Failed**:
+- Verify all table of contents entries have valid content
+- Ensure document IDs in ToC entries exist
+- Check that at least API Reference section is present
+- Retry publish with `preview: false`
+
+**Documentation Content Empty**:
+- If generated markdown/HTML is empty, explicitly create useful content:
+  - cURL examples for each endpoint
+  - Setup/installation instructions
+  - Authentication guide
+  - Real-world usage scenarios
+- Use `create_table_of_contents` with actual `documentId` for created content
 
 **API Already Exists**: `create_or_update_api` handles this automatically.
 
@@ -149,14 +187,22 @@ When a user requests API development (build, create, or update), follow this com
 
 **User**: "Build a REST API for managing customer orders"
 
-1. Generate order management API code
-2. Create OpenAPI 3.1 specification
-3. Scan against organization governance
-4. Apply any fixes to the spec and code
-5. Upload to SwaggerHub
-6. Update portal product with new API reference
-7. Publish portal updates live
-8. Commit and push to GitHub
+**Agent Response (All phases executed)**:
+
+1. ✅ Generate order management API code with validation
+2. ✅ Create OpenAPI 3.1 specification with examples
+3. ✅ Scan against organization governance rules
+4. ⚠️  Found 3 naming convention issues → Apply fixes → Re-scan → ✅ Zero errors
+5. ✅ Upload to SwaggerHub at `org/orders-api/1.0.0`
+6. ✅ Find existing "Products Portal" with similar products
+7. ✅ Create portal documentation sections:
+   - API Reference (linked to SwaggerHub spec)
+   - Getting Started (setup, auth, dependencies)
+   - Usage Examples (cURL commands for each endpoint: GET orders, POST order, PUT order, DELETE order)
+   - Integration Guide (how to use in applications)
+8. ✅ Publish portal product live (VISIBLE and ACCESSIBLE to users)
+9. ✅ Commit to GitHub with SwaggerHub URL
+10. ✅ Return portal URL so users can view documentation
 
 ## Important Notes
 

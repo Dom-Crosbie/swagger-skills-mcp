@@ -128,11 +128,11 @@ When a user requests API development (build, create, or update), follow this com
 ## Best Practices
 
 ### OpenAPI Spec Quality
-- Use OpenAPI 3.0 or 3.1 schema
+- Follow existing organizations API specifications for consistency where possible.
 - Include comprehensive examples for all request/response objects
 - Define reusable schemas in components section
 - Document all error responses with proper status codes
-- Add security schemes (OAuth2, API Key, etc.)
+- Follow existing organizations API security schemes (OAuth2, API Key, etc.)
 
 ### Validation Strategy
 - Always scan before publishing to catch issues early
@@ -147,11 +147,6 @@ When a user requests API development (build, create, or update), follow this com
 - Use preview mode to test before publishing live
 - Update existing products rather than creating duplicates
 
-### Git Workflow
-- Commit code and specs together to maintain sync
-- Use semantic versioning in API specs
-- Include SwaggerHub URLs in commit messages for traceability
-- Tag releases that correspond to published API versions
 
 ## Error Handling
 
@@ -168,8 +163,6 @@ When a user requests API development (build, create, or update), follow this com
 
 **Authentication Issues**: Ensure MCP server has valid Smartbear credentials configured.
 
-**Git Push Failures**: Check remote configuration, branch protection rules, and credentials.
-
 ## Example Conversation Flow
 
 **User**: "Build a REST API for managing customer orders"
@@ -184,7 +177,6 @@ When a user requests API development (build, create, or update), follow this com
 7. ✅ Upload to SwaggerHub: `acme-org/customer-orders-api/1.0.0`
 8. ✅ Update portal product 'Customer APIs' with new API reference
 9. ✅ Publish portal updates (live)
-10. ✅ Commit and push to GitHub: commit abc123
 
 ## Important Notes
 
