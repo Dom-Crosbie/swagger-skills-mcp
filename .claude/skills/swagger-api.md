@@ -104,46 +104,47 @@ allowedTools:
 
 ---
 
-## STEP 5: Create Portal Documentation (MANDATORY)
+## STEP 5: Create Portal Documentation (MANDATORY — all sub-steps required)
 
-15. List portals: `mcp__smartbear-joe__swagger_list_portals`
-    - Find a relevant portal (e.g., if ecommerce API, find "Products Portal" or "Ecommerce Portal")
+The SwaggerHub spec URL from Step 4 MUST be carried into this step.
+Use format: `https://api.swaggerhub.com/apis/{owner}/{apiName}/{version}`
 
-16. Get portal products: `mcp__smartbear-joe__swagger_list_portal_products`
-    - Find a matching product or create new one
+17. List portals: `mcp__smartbear-joe__swagger_list_portals`
+    - Find the most relevant portal for this API domain
 
-17. Get product sections: `mcp__smartbear-joe__swagger_list_portal_product_sections`
-    - Embed: ['tableOfContents']
+18. List products: `mcp__smartbear-joe__swagger_list_portal_products`
+    - If a matching product exists, use it
+    - If not, create one: `mcp__smartbear-joe__swagger_create_portal_product`
 
-18. **CREATE** these documentation sections (REQUIRED):
+19. Get current sections: `mcp__smartbear-joe__swagger_list_portal_product_sections`
+    - embed: ['tableOfContents']
 
-    **A) API Reference Section**:
-    - Create table of contents entry with type: `apiUrl`
-    - Link to SwaggerHub spec from Step 4
+20. **ADD API REFERENCE (REQUIRED FIRST)**:
+    - `mcp__smartbear-joe__swagger_create_table_of_contents`
+    - type: `apiUrl`
+    - title: "[API Name] Reference"
+    - url: **the SwaggerHub spec URL from Step 16** (`https://api.swaggerhub.com/apis/...`)
+    - This links the portal page directly to the published API spec
 
-    **B) Getting Started Section**:
-    - Create table of contents entry with type: `markdown` or `html`
-    - Create document with:
-      - Setup instructions (prerequisites, how to run)
-      - Authentication guide (how to get API key/token)
-      - Basic example request
+21. **ADD GETTING STARTED PAGE**:
+    - `mcp__smartbear-joe__swagger_create_table_of_contents` with type: `document`, title: "Getting Started"
+    - Capture the `documentId` from the response
+    - `mcp__smartbear-joe__swagger_update_document` with content covering:
+      - Prerequisites and installation
+      - How to authenticate (API key / Bearer token)
+      - First example request
 
-    **C) Usage Examples Section**:
-    - Create table of contents entry with type: `markdown`
-    - Create document with:
-      - cURL command for EVERY endpoint (GET, POST, PUT, DELETE)
-      - Real example requests and responses
-      - Common use cases
+22. **ADD USAGE EXAMPLES PAGE**:
+    - `mcp__smartbear-joe__swagger_create_table_of_contents` with type: `document`, title: "Usage Examples"
+    - Capture the `documentId` from the response
+    - `mcp__smartbear-joe__swagger_update_document` with content covering:
+      - cURL command for every endpoint
+      - Real request and response examples
 
-    **D) Error Handling Section** (if needed):
-    - Document all HTTP status codes
-    - Include error response examples
+23. Publish live: `mcp__smartbear-joe__swagger_publish_portal_product`
+    - preview: **false** (not draft, not preview — LIVE)
 
-19. Publish portal: `mcp__smartbear-joe__swagger_publish_portal_product`
-    - preview: false (LIVE, not draft)
-    - Verify product is now visible and accessible
-
-20. Report portal URL to user
+24. Report portal product URL to user
 
 ---
 

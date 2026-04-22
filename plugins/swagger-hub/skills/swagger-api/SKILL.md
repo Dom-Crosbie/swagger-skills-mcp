@@ -48,14 +48,26 @@ mcp__smartbear-joe__swagger_scan_api_standardization → re-scan to confirm zero
 ```
 Returns a SwaggerHub URL: `https://app.swaggerhub.com/apis/{owner}/{apiName}/1.0.0`
 
-### Phase 5 — Portal Documentation
+### Phase 5 — Portal Documentation (all steps required, in order)
 ```
 mcp__smartbear-joe__swagger_list_portals
 mcp__smartbear-joe__swagger_list_portal_products
-mcp__smartbear-joe__swagger_create_portal_product    → if new
-mcp__smartbear-joe__swagger_list_portal_product_sections
-mcp__smartbear-joe__swagger_create_table_of_contents → add API reference
-mcp__smartbear-joe__swagger_publish_portal_product   → go live
+mcp__smartbear-joe__swagger_create_portal_product         → if no matching product exists
+
+mcp__smartbear-joe__swagger_list_portal_product_sections  → get current ToC
+
+# Step A — link API spec (REQUIRED, use URL from Phase 4)
+mcp__smartbear-joe__swagger_create_table_of_contents      → type: apiUrl, url: https://api.swaggerhub.com/apis/{owner}/{apiName}/{version}
+
+# Step B — Getting Started page
+mcp__smartbear-joe__swagger_create_table_of_contents      → type: document, title: "Getting Started"
+mcp__smartbear-joe__swagger_update_document               → write setup, auth, first request
+
+# Step C — Usage Examples page
+mcp__smartbear-joe__swagger_create_table_of_contents      → type: document, title: "Usage Examples"
+mcp__smartbear-joe__swagger_update_document               → write cURL for every endpoint
+
+mcp__smartbear-joe__swagger_publish_portal_product        → preview: false (LIVE)
 ```
 
 ### Phase 6 — GitHub Publication
