@@ -10,7 +10,7 @@ allowedTools:
   - Glob
   - Grep
   - Bash
-  - mcp__smartbear-mcp__swagger_*
+  - mcp__smartbear-joe__swagger_*
 ---
 
 # Build REST API with Governance (Mandatory Workflow)
@@ -19,13 +19,13 @@ allowedTools:
 
 ## STEP 1: Get Organization & Search Similar APIs
 
-1. List organizations: `mcp__smartbear-mcp__swagger_list_organizations`
+1. List organizations: `mcp__smartbear-joe__swagger_list_organizations`
 2. Get the user's organization name from the response
-3. Search for similar APIs: `mcp__smartbear-mcp__swagger_search_apis_and_domains`
+3. Search for similar APIs: `mcp__smartbear-joe__swagger_search_apis_and_domains`
    - Search for relevant keywords (e.g., "ecommerce", "store", "product", "tool")
    - Get 3-5 similar APIs
 4. **ANALYZE** each similar API:
-   - Download spec using `mcp__smartbear-mcp__swagger_get_api_definition`
+   - Download spec using `mcp__smartbear-joe__swagger_get_api_definition`
    - Extract and document:
      - Parameter naming (camelCase? snake_case?)
      - Response structure (wrapped arrays? bare arrays?)
@@ -58,7 +58,7 @@ allowedTools:
 
 ## STEP 3: Scan & Validate (MANDATORY LOOP - DO NOT SKIP)
 
-8. **FIRST SCAN**: `mcp__smartbear-mcp__swagger_scan_api_standardization`
+8. **FIRST SCAN**: `mcp__smartbear-joe__swagger_scan_api_standardization`
    - Parameters: org name, OpenAPI spec
    - Collect ALL errors and warnings
 
@@ -84,7 +84,7 @@ allowedTools:
 
 ## STEP 4: Create or Update in SwaggerHub
 
-12. Upload spec: `mcp__smartbear-mcp__swagger_create_or_update_api`
+12. Upload spec: `mcp__smartbear-joe__swagger_create_or_update_api`
     - owner: organization name from Step 1
     - apiName: [descriptive name from user's domain]
     - definition: the validated OpenAPI spec from Step 3
@@ -95,13 +95,13 @@ allowedTools:
 
 ## STEP 5: Create Portal Documentation (MANDATORY)
 
-15. List portals: `mcp__smartbear-mcp__swagger_list_portals`
+15. List portals: `mcp__smartbear-joe__swagger_list_portals`
     - Find a relevant portal (e.g., if ecommerce API, find "Products Portal" or "Ecommerce Portal")
 
-16. Get portal products: `mcp__smartbear-mcp__swagger_list_portal_products`
+16. Get portal products: `mcp__smartbear-joe__swagger_list_portal_products`
     - Find a matching product or create new one
 
-17. Get product sections: `mcp__smartbear-mcp__swagger_list_portal_product_sections`
+17. Get product sections: `mcp__smartbear-joe__swagger_list_portal_product_sections`
     - Embed: ['tableOfContents']
 
 18. **CREATE** these documentation sections (REQUIRED):
@@ -128,7 +128,7 @@ allowedTools:
     - Document all HTTP status codes
     - Include error response examples
 
-19. Publish portal: `mcp__smartbear-mcp__swagger_publish_portal_product`
+19. Publish portal: `mcp__smartbear-joe__swagger_publish_portal_product`
     - preview: false (LIVE, not draft)
     - Verify product is now visible and accessible
 

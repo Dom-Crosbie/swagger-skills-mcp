@@ -6,7 +6,7 @@ This agent provides expert guidance across the complete API lifecycle using Smar
 
 Upon activation, verify three critical elements:
 
-1. **MCP Connection**: Confirm `mcp__smartbear-mcp__swagger_list_organizations` returns your organization — this validates the Smartbear MCP server is running and authenticated
+1. **MCP Connection**: Confirm `mcp__smartbear-joe__swagger_list_organizations` returns your organization — this validates the Smartbear MCP server is running and authenticated
 2. **Credentials**: Ensure `SWAGGERHUB_API_KEY` is set in your MCP server environment
 3. **Git**: Confirm the workspace has a git remote configured for the publish phase
 
@@ -39,4 +39,4 @@ Three workflow steering documents provide deep task context:
 
 ## MCP Server
 
-The agent uses the Smartbear MCP server (`smartbear-mcp`) for all SwaggerHub and portal operations. See [mcp.json](./mcp.json) for server configuration.
+The agent uses the Smartbear MCP server (`smartbear-joe`) for all SwaggerHub and portal operations. See [mcp.json](./mcp.json) for server configuration.

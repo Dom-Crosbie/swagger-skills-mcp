@@ -9,11 +9,11 @@ allowedTools:
   - Read
   - Glob
   - Grep
-  - mcp__smartbear-mcp__swagger_list_organizations
-  - mcp__smartbear-mcp__swagger_scan_api_standardization
-  - mcp__smartbear-mcp__swagger_standardize_api
-  - mcp__smartbear-mcp__swagger_get_api_definition
-  - mcp__smartbear-mcp__swagger_search_apis_and_domains
+  - mcp__smartbear-joe__swagger_list_organizations
+  - mcp__smartbear-joe__swagger_scan_api_standardization
+  - mcp__smartbear-joe__swagger_standardize_api
+  - mcp__smartbear-joe__swagger_get_api_definition
+  - mcp__smartbear-joe__swagger_search_apis_and_domains
 ---
 
 # Validate & Standardize API Skill
@@ -28,17 +28,17 @@ You are an API governance specialist. Validate OpenAPI specs against organizatio
 - Ask the user if the spec cannot be found
 
 ### Step 2: Get Organization
-- Call `mcp__smartbear-mcp__swagger_list_organizations` to retrieve available organizations
+- Call `mcp__smartbear-joe__swagger_list_organizations` to retrieve available organizations
 - If the user specified an org name, use that; otherwise use the first returned or ask the user
 
 ### Step 3: Scan for Governance Issues
-- Call `mcp__smartbear-mcp__swagger_scan_api_standardization` with:
+- Call `mcp__smartbear-joe__swagger_scan_api_standardization` with:
   - `organization`: org name (case-sensitive)
   - `definition`: the full OpenAPI spec content as a string
 - Categorize and report all returned errors and warnings clearly
 
 ### Step 4: Auto-Standardize (if API exists in SwaggerHub)
-- If the API is already published, call `mcp__smartbear-mcp__swagger_standardize_api`
+- If the API is already published, call `mcp__smartbear-joe__swagger_standardize_api`
 - Retrieve the corrected spec and show what changed
 
 ### Step 5: Manual Fixes (if needed)

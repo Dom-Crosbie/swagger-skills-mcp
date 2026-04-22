@@ -30,7 +30,7 @@ The plugin bundles the Smartbear MCP server alongside skills, enabling direct co
    ```json
    {
      "mcpServers": {
-       "smartbear-mcp": {
+       "smartbear-joe": {
          "command": "npx",
          "args": ["-y", "@smartbear/smartbear-mcp"],
          "env": {

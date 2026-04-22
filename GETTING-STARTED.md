@@ -63,7 +63,7 @@ Edit `~/.claude/settings.json` (create if it doesn't exist):
 ```json
 {
   "mcpServers": {
-    "smartbear-mcp": {
+    "smartbear-joe": {
       "command": "npx",
       "args": ["-y", "@smartbear/smartbear-mcp"],
       "env": {

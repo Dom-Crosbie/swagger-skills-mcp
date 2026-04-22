@@ -17,7 +17,7 @@ allowedTools:
   - run_in_terminal
   - get_terminal_output
   - get_errors
-  - mcp_smartbear-mcp_swagger_*
+  - mcp_smartbear-joe_swagger_*
   - tool_search_tool_regex
 ---
 
@@ -45,12 +45,12 @@ When a user requests API development (build, create, or update), follow this com
    - API metadata (title, version, description, contact info)
 
 ### Phase 2: Validation & Standardization
-4. **Organization Check**: Before validation, use `mcp_smartbear-mcp_swagger_list_organizations` to get available organizations
-5. **Scan for Issues**: Use `mcp_smartbear-mcp_swagger_scan_api_standardization` with the organization name and OpenAPI spec
+4. **Organization Check**: Before validation, use `mcp_smartbear-joe_swagger_list_organizations` to get available organizations
+5. **Scan for Issues**: Use `mcp_smartbear-joe_swagger_scan_api_standardization` with the organization name and OpenAPI spec
    - Analyze returned errors and warnings
    - Report validation issues to the user
 6. **Auto-Standardize** (if API already exists in SwaggerHub):
-   - Use `mcp_smartbear-mcp_swagger_standardize_api` to automatically fix governance violations
+   - Use `mcp_smartbear-joe_swagger_standardize_api` to automatically fix governance violations
    - If successful, retrieve the corrected spec
 7. **Manual Fixes** (if needed):
    - For new APIs or when auto-fix isn't available, manually correct the OpenAPI spec based on scan results
@@ -64,26 +64,26 @@ When a user requests API development (build, create, or update), follow this com
 9. **Verify Alignment**: Ensure code and OpenAPI spec are fully synchronized
 
 ### Phase 4: SwaggerHub Registry Update
-10. **Create or Update API**: Use `mcp_smartbear-mcp_swagger_create_or_update_api`
+10. **Create or Update API**: Use `mcp_smartbear-joe_swagger_create_or_update_api`
     - Parameters: `owner` (org name), `apiName`, `definition` (OpenAPI spec as string)
     - This creates version 1.0.0 if new, or updates existing
     - Capture the SwaggerHub URL from the response
 
 ### Phase 5: Portal Documentation
 11. **Check Portal Setup**:
-    - Use `mcp_smartbear-mcp_swagger_list_portals` to find available portals
-    - Use `mcp_smartbear-mcp_swagger_list_portal_products` to see products in the target portal
+    - Use `mcp_smartbear-joe_swagger_list_portals` to find available portals
+    - Use `mcp_smartbear-joe_swagger_list_portal_products` to see products in the target portal
 12. **Create or Update Product** (if needed):
-    - Use `mcp_smartbear-mcp_swagger_create_portal_product` to create a new product entry
+    - Use `mcp_smartbear-joe_swagger_create_portal_product` to create a new product entry
     - Or identify existing product for update
 13. **Get Product Sections**:
-    - Use `mcp_smartbear-mcp_swagger_list_portal_product_sections` with embed parameter `['tableOfContents']`
+    - Use `mcp_smartbear-joe_swagger_list_portal_product_sections` with embed parameter `['tableOfContents']`
 14. **Update Documentation**:
     - For API reference: Create table of contents entry with type `apiUrl` pointing to SwaggerHub API
-    - For guides/tutorials: Use `mcp_smartbear-mcp_swagger_update_document` to update HTML or Markdown content
-    - Use `mcp_smartbear-mcp_swagger_create_table_of_contents` for new documentation sections
+    - For guides/tutorials: Use `mcp_smartbear-joe_swagger_update_document` to update HTML or Markdown content
+    - Use `mcp_smartbear-joe_swagger_create_table_of_contents` for new documentation sections
 15. **Publish Product**:
-    - Use `mcp_smartbear-mcp_swagger_publish_portal_product` with `preview: false` to go live
+    - Use `mcp_smartbear-joe_swagger_publish_portal_product` with `preview: false` to go live
     - Or use `preview: true` for staging
 
 ### Phase 6: GitHub Publication
@@ -101,29 +101,29 @@ When a user requests API development (build, create, or update), follow this com
 ## Key Tools Reference
 
 ### Validation & Governance
-- `mcp_smartbear-mcp_swagger_scan_api_standardization`: Scan OpenAPI spec for governance violations
-- `mcp_smartbear-mcp_swagger_standardize_api`: Auto-fix governance issues using AI
+- `mcp_smartbear-joe_swagger_scan_api_standardization`: Scan OpenAPI spec for governance violations
+- `mcp_smartbear-joe_swagger_standardize_api`: Auto-fix governance issues using AI
 
 ### Registry Management
-- `mcp_smartbear-mcp_swagger_create_or_update_api`: Create/update API in SwaggerHub
-- `mcp_smartbear-mcp_swagger_get_api_definition`: Retrieve existing API spec
-- `mcp_smartbear-mcp_swagger_search_apis_and_domains`: Find APIs by query
+- `mcp_smartbear-joe_swagger_create_or_update_api`: Create/update API in SwaggerHub
+- `mcp_smartbear-joe_swagger_get_api_definition`: Retrieve existing API spec
+- `mcp_smartbear-joe_swagger_search_apis_and_domains`: Find APIs by query
 
 ### Portal Management
-- `mcp_smartbear-mcp_swagger_list_portals`: List available portals
-- `mcp_smartbear-mcp_swagger_get_portal`: Get portal details
-- `mcp_smartbear-mcp_swagger_list_portal_products`: List products in a portal
-- `mcp_smartbear-mcp_swagger_create_portal_product`: Create new product
-- `mcp_smartbear-mcp_swagger_list_portal_product_sections`: Get sections and table of contents
-- `mcp_smartbear-mcp_swagger_publish_portal_product`: Publish product live or as preview
+- `mcp_smartbear-joe_swagger_list_portals`: List available portals
+- `mcp_smartbear-joe_swagger_get_portal`: Get portal details
+- `mcp_smartbear-joe_swagger_list_portal_products`: List products in a portal
+- `mcp_smartbear-joe_swagger_create_portal_product`: Create new product
+- `mcp_smartbear-joe_swagger_list_portal_product_sections`: Get sections and table of contents
+- `mcp_smartbear-joe_swagger_publish_portal_product`: Publish product live or as preview
 
 ### Documentation
-- `mcp_smartbear-mcp_swagger_create_table_of_contents`: Add new doc section
-- `mcp_smartbear-mcp_swagger_update_document`: Update HTML/Markdown content
-- `mcp_smartbear-mcp_swagger_get_document`: Retrieve document content
+- `mcp_smartbear-joe_swagger_create_table_of_contents`: Add new doc section
+- `mcp_smartbear-joe_swagger_update_document`: Update HTML/Markdown content
+- `mcp_smartbear-joe_swagger_get_document`: Retrieve document content
 
 ### Organization
-- `mcp_smartbear-mcp_swagger_list_organizations`: Get user's organizations
+- `mcp_smartbear-joe_swagger_list_organizations`: Get user's organizations
 
 ## Best Practices
 
