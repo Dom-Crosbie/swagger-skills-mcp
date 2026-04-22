@@ -37,42 +37,51 @@ When a user requests API development (build, create, or update), follow this com
    - Error responses
    - API metadata (title, version, description, contact info)
 
-### Phase 2: Validation & Standardization
+### Phase 2: Validation & Standardization (**MANDATORY**)
 4. **Organization Check**: Use `mcp__smartbear-mcp__swagger_list_organizations` to get available organizations
-5. **Scan for Issues**: Use `mcp__smartbear-mcp__swagger_scan_api_standardization` with the organization name and OpenAPI spec
+5. **Scan for Governance Issues**: Use `mcp__smartbear-mcp__swagger_scan_api_standardization` with the organization name and OpenAPI spec
    - Analyze returned errors and warnings
-   - Report validation issues to the user
-6. **Auto-Standardize** (if API already exists in SwaggerHub):
+   - Report all issues clearly to the user
+6. **Verify Zero Errors**: 
+   - **BLOCK:** If the scan returns ANY errors, DO NOT proceed to Phase 3
+   - Report errors and ask the user to fix them or authorize a manual approach
+   - Warnings are acceptable; errors are not
+7. **Auto-Standardize** (if API already exists in SwaggerHub):
    - Use `mcp__smartbear-mcp__swagger_standardize_api` to automatically fix governance violations
-7. **Manual Fixes** (if needed):
+8. **Manual Fixes** (if needed):
    - For new APIs, manually correct the OpenAPI spec based on scan results
-   - Re-scan to verify compliance
+   - Re-scan to verify ZERO errors before proceeding
 
 ### Phase 3: Apply Changes to Code
-8. **Code Refinement**: Update the API implementation based on standardization feedback
-9. **Verify Alignment**: Ensure code and OpenAPI spec are fully synchronized
+9. **Code Refinement**: Update the API implementation based on standardization feedback
+10. **Verify Alignment**: Ensure code and OpenAPI spec are fully synchronized
 
 ### Phase 4: SwaggerHub Registry Update
-10. **Create or Update API**: Use `mcp__smartbear-mcp__swagger_create_or_update_api`
+11. **Create or Update API**: Use `mcp__smartbear-mcp__swagger_create_or_update_api`
     - Parameters: `owner` (org name), `apiName`, `definition` (OpenAPI spec as string)
     - Captures the SwaggerHub URL from the response
 
-### Phase 5: Portal Documentation
-11. **Check Portal Setup**: Use `mcp__smartbear-mcp__swagger_list_portals` and `mcp__smartbear-mcp__swagger_list_portal_products`
-12. **Create or Update Product**: Use `mcp__smartbear-mcp__swagger_create_portal_product` if needed
-13. **Get Product Sections**: Use `mcp__smartbear-mcp__swagger_list_portal_product_sections` with embed `['tableOfContents']`
-14. **Update Documentation**:
-    - For API reference: Create table of contents entry with type `apiUrl` pointing to SwaggerHub API
-    - For guides/tutorials: Use `mcp__smartbear-mcp__swagger_update_document` with HTML or Markdown content
-    - Use `mcp__smartbear-mcp__swagger_create_table_of_contents` for new documentation sections
-15. **Publish Product**: Use `mcp__smartbear-mcp__swagger_publish_portal_product` with `preview: false` for live
+### Phase 5: Portal Documentation Linking (**MANDATORY**)
+12. **Check Portal Setup**: Use `mcp__smartbear-mcp__swagger_list_portals` to discover available portals
+    - If no portals exist, inform the user and offer to create one
+13. **Locate or Create Product**: 
+    - Use `mcp__smartbear-mcp__swagger_list_portal_products` to find a matching product
+    - If none exists, create one with `mcp__smartbear-mcp__swagger_create_portal_product`
+14. **Link API to Portal** (**REQUIRED**):
+    - Use `mcp__smartbear-mcp__swagger_list_portal_product_sections` with embed `['tableOfContents']`
+    - Use `mcp__smartbear-mcp__swagger_create_table_of_contents` to add a new entry with:
+      - `type: apiUrl`
+      - `url`: the SwaggerHub API URL (format: `https://api.swaggerhub.com/apis/{owner}/{apiName}/{version}`)
+    - This creates a live link in the portal to the SwaggerHub spec
+15. **Publish Portal** (**REQUIRED**): Use `mcp__smartbear-mcp__swagger_publish_portal_product` with `preview: false` to go live
+    - Report the portal URL to the user so they can verify the API reference is visible
 
 ### Phase 6: GitHub Publication
 16. **Prepare Repository**: Ensure git is initialized and remote is configured
 17. **Commit and Push**:
     ```bash
     git add .
-    git commit -m "API update: [description] - validated and published to SwaggerHub"
+    git commit -m "API update: [description] - validated, published to SwaggerHub, and linked in portal"
     git push origin main
     ```
 18. **Verify**: Confirm successful push and provide commit hash
