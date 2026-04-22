@@ -87,9 +87,32 @@ List my Swagger organizations
 
 If you see your organizations listed, you're ready to go! ✅
 
+## How the Skill Works
+
+The skill is **self-learning** and **dynamically adaptive**:
+
+1. **Phase 0 - Learn**: Searches your org for similar APIs and learns their patterns
+   - Naming conventions (camelCase? snake_case?)
+   - Response structures (how arrays are wrapped)
+   - Security schemes (Bearer? API Key?)
+   - Documentation style
+
+2. **Phase 1 - Generate**: Creates new API following the patterns it learned
+   - No hard-coded rules
+   - Matches your org's existing APIs
+
+3. **Phase 2 - Validate & Fix**: Runs governance scan, analyzes errors, fixes them
+   - Scans the spec
+   - For each error: looks at org's existing APIs to see how to fix it
+   - Re-scans until zero errors
+   - No manual intervention needed
+
+---
+
 ## Sample Prompts
 
-Try these prompts to test each skill. Copy and paste directly into Claude Code.
+Try these prompts—just specify the **domain**, not the endpoints. The skill will learn from your org's existing APIs.
+Copy and paste directly into Claude Code.
 
 ### Skill 1: List Your Organizations
 
@@ -98,31 +121,41 @@ Try these prompts to test each skill. Copy and paste directly into Claude Code.
 List my Swagger organizations
 ```
 
-### Skill 2: Build a Complete API (Full Workflow)
+### Skill 2: Build a Complete API (Full Workflow - Pattern-Based)
 
-**Generates code → validates → publishes to SwaggerHub → creates portal documentation → pushes to GitHub:**
+**The skill will:**
+1. Search your org for similar APIs (rental, booking, inventory, etc.)
+2. Learn the patterns from those APIs
+3. Generate new API following those patterns
+4. Validate and fix until zero governance errors
+5. Publish to SwaggerHub + Portal + GitHub
+
+**You just specify the domain:**
 ```
-Build a REST API for a boat rental company with the following endpoints:
-- GET /boats - list available boats
-- POST /boats - add a new boat (admin only)
-- GET /boats/{id} - get boat details
-- POST /boats/{id}/reservations - create a reservation
-- GET /reservations/{id} - get reservation details
-- PUT /reservations/{id} - update a reservation
-- DELETE /reservations/{id} - cancel a reservation
+Build a REST API for a boat rental service
+```
 
-Include validation, error handling, JWT authentication, and full OpenAPI 3.1 documentation.
-Also create portal documentation with cURL examples and setup instructions.
+Or with more context:
+```
+Build a REST API for a boat rental company. 
+The API should handle boats, reservations, pricing, and customer management.
 ```
 
 **What you get back:**
-- ✅ Node.js API code (with tests)
-- ✅ OpenAPI spec (governance-validated, zero errors)
-- ✅ Published to SwaggerHub
-- ✅ Portal product documentation with Getting Started guide
-- ✅ Usage Examples section with cURL commands for each endpoint
-- ✅ Live portal URL where users can view and test the API
+- ✅ Node.js/Python API code (with tests)
+- ✅ OpenAPI spec (matches your org's patterns, passes governance)
+- ✅ Published to SwaggerHub with working URL
+- ✅ Portal product documentation with:
+  - Getting Started guide (auth, setup)
+  - cURL examples for each endpoint (copied from real endpoints)
+  - API Reference (linked to SwaggerHub)
+- ✅ Live portal URL ready to share
 - ✅ Git commit with all code and specs
+
+**No need to:**
+- ❌ Specify endpoints (skill learns from similar APIs)
+- ❌ Worry about governance rules (skill validates in a loop until zero errors)
+- ❌ Create portal docs manually (skill generates from spec)
 
 ### Skill 3: Create API from Prompt
 
@@ -173,34 +206,48 @@ Validate the customer-orders API in SwaggerHub against our governance rules and 
 
 ## Full Workflow Checklist
 
-When you ask Claude to "Build a REST API for...", here's what MUST happen:
+When you ask Claude to "Build a REST API for [domain]", here's what MUST happen:
 
-### Phase 1: Code & Spec ✅
+### Phase 0: Learn from Org ✅
+- [ ] Searched for similar APIs in your org
+- [ ] Found 3+ example APIs
+- [ ] Extracted naming conventions, structure, auth patterns
+- [ ] Reported patterns to user
+
+### Phase 1: Generate Code & Spec ✅
 - [ ] API code generated (Node.js, Python, etc.)
-- [ ] OpenAPI 3.1 spec created with all endpoints
-- [ ] Request/response examples included
-- [ ] Authentication scheme defined
+- [ ] OpenAPI 3.1 spec created
+- [ ] Spec follows patterns from Phase 0 (same naming, structure, auth)
+- [ ] Examples and descriptions included
 
-### Phase 2: Validation ✅ (MUST be zero errors)
-- [ ] Governance scan completed
-- [ ] Any issues FIXED (not just reported)
-- [ ] Re-scanned until zero errors shown
-- [ ] Governor compliance verified
+### Phase 2: Validate & Fix Loop ✅ (MUST end with zero errors)
+- [ ] Initial scan completed
+- [ ] For each error:
+  - [ ] Analyzed error message
+  - [ ] Looked at existing org APIs for pattern
+  - [ ] Fixed spec to match pattern
+  - [ ] Re-scanned
+- [ ] Final scan shows ✅ Zero critical errors
+- [ ] All fixes reported to user
 
-### Phase 3: Publishing ✅
+### Phase 3: Code Refinement ✅
+- [ ] Code updated to match validated spec
+- [ ] Code and spec are synchronized
+
+### Phase 4: SwaggerHub Publishing ✅
 - [ ] API uploaded to SwaggerHub
 - [ ] SwaggerHub URL provided (e.g., https://app.swaggerhub.com/apis/org/api-name)
 
-### Phase 4: Portal Documentation ✅ (THIS IS CRITICAL)
+### Phase 5: Portal Documentation ✅ (CRITICAL)
 - [ ] Portal product identified or created
 - [ ] **Getting Started** section with setup instructions
 - [ ] **API Reference** section linked to SwaggerHub spec
 - [ ] **Usage Examples** section with cURL commands for each endpoint
-- [ ] **Authentication** section explaining how to use API keys/JWT
-- [ ] Portal **published live** (not just preview)
+- [ ] **Authentication** section explaining auth
+- [ ] Portal **published live** (not preview)
 - [ ] Portal URL provided so you can view documentation
 
-### Phase 5: GitHub ✅
+### Phase 6: GitHub ✅
 - [ ] Code committed with all specs
 - [ ] Pushed to repository
 - [ ] Commit message includes SwaggerHub URL
