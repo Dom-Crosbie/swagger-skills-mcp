@@ -79,10 +79,16 @@ Ask the user what type of integration they want. Common types:
 
 | Type | Description |
 |------|-------------|
-| `GITHUB_SYNC` | Push spec to a GitHub repo on save |
-| `GITLAB_PUSH` | Push spec to GitLab on save |
-| `BITBUCKET_PUSH` | Push spec to Bitbucket on save |
-| `AWS_API_GATEWAY_IMPORT` | Import/sync to AWS API Gateway |
+| `API_AUTO_MOCKING` | VirtServer AutoMocking — generate a mock server from the spec |
+| `GITHUB` | Push spec to a GitHub repo on save |
+| `GITLAB` | Push spec to GitLab on save |
+| `BITBUCKET_CLOUD` | Push spec to Bitbucket Cloud on save |
+| `BITBUCKET_SERVER` | Push spec to Bitbucket Server on save |
+| `AMAZON_API_GATEWAY` | Sync to AWS API Gateway |
+| `AMAZON_API_GATEWAY_LAMBDA` | Sync to AWS API Gateway with Lambda |
+| `APIGEE_EDGE` | Sync to Apigee Edge |
+| `AZURE_API_MANAGEMENT` | Sync to Azure API Management |
+| `AZURE_DEVOPS_SERVICES` | Sync to Azure DevOps Services |
 | `WEBHOOK` | Send HTTP POST to a URL on API events |
 | `AMAZON_API_GATEWAY` | Deploy to Amazon API Gateway |
 
@@ -95,7 +101,7 @@ curl -s -X POST \
   -H "Content-Type: application/json" \
   -d '{
     "name": "GitHub Sync",
-    "configType": "GITHUB_SYNC",
+    "configType": "GITHUB",
     "enabled": true,
     "config": {
       "owner": "github-org",

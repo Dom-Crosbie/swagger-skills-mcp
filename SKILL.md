@@ -259,10 +259,16 @@ Manages integrations on specific API versions via the Registry REST API. Reads `
 
 | Type | Description |
 |------|-------------|
-| `GITHUB_SYNC` | Push spec to a GitHub repo on save |
-| `GITLAB_PUSH` | Push spec to GitLab on save |
-| `BITBUCKET_PUSH` | Push spec to Bitbucket on save |
-| `AWS_API_GATEWAY_IMPORT` | Sync to AWS API Gateway |
+| `API_AUTO_MOCKING` | VirtServer AutoMocking — mock server generated from spec |
+| `GITHUB` | Push spec to a GitHub repo on save |
+| `GITLAB` | Push spec to GitLab on save |
+| `BITBUCKET_CLOUD` | Push spec to Bitbucket Cloud on save |
+| `BITBUCKET_SERVER` | Push spec to Bitbucket Server on save |
+| `AMAZON_API_GATEWAY` | Sync to AWS API Gateway |
+| `AMAZON_API_GATEWAY_LAMBDA` | Sync to AWS API Gateway with Lambda |
+| `APIGEE_EDGE` | Sync to Apigee Edge |
+| `AZURE_API_MANAGEMENT` | Sync to Azure API Management |
+| `AZURE_DEVOPS_SERVICES` | Sync to Azure DevOps Services |
 | `WEBHOOK` | HTTP POST to a URL on API events |
 
 > Always confirm with user before deleting an integration.
