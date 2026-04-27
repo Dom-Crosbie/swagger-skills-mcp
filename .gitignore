@@ -1,5 +1,8 @@
 # Local Claude Code settings (contains personal permissions/credentials)
 .claude/settings.local.json
 
+# Live config — contains your API key, never commit this
+swagger-config.yml
+
 # Editor
 .vscode/
