@@ -148,19 +148,6 @@ Use format: `https://api.swaggerhub.com/apis/{owner}/{apiName}/{version}`
 
 ---
 
-## STEP 6: Commit & Push to GitHub
-
-21. Stage all changes:
-    ```bash
-    git add .
-    git commit -m "Build [API Name] - validated and published to SwaggerHub at [URL]"
-    git push origin main
-    ```
-
-22. Report commit URL to user
-
----
-
 ## REQUIRED CHECKLIST
 
 Before completing, verify:
@@ -173,7 +160,6 @@ Before completing, verify:
 - ✅ Step 4: Re-scan after standardize shows zero errors
 - ✅ Step 5: Portal documentation created with 4 sections
 - ✅ Step 5: Portal published (not preview)
-- ✅ Step 6: Pushed to GitHub
 
 **If ANY step incomplete, do not report success to user.**
 
@@ -217,5 +203,4 @@ When complete, provide:
 1. ✅ API successfully built and validated
 2. 📄 SwaggerHub URL: [link]
 3. 📚 Portal documentation URL: [link]
-4. 💾 GitHub commit: [link]
-5. 📝 What you can do now: [list endpoints with brief descriptions]
+4. 📝 What you can do now: [list endpoints with brief descriptions]
