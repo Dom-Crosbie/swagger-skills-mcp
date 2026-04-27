@@ -1,0 +1,29 @@
+# Swagger Skills Configuration
+# Fill in the two required values below, then save this file.
+
+# ─── REQUIRED ────────────────────────────────────────────────────────────────
+
+# Your SwaggerHub API key
+# Get it at: https://app.swaggerhub.com/settings/apiKey
+swaggerhub_api_key: "YOUR_API_KEY_HERE"
+
+# The name of your local SmartBear MCP server instance
+# This is the key you used when registering the MCP in Claude Code settings
+# Default is "smartbear-joe" — only change if you named yours differently
+mcp_server_name: "smartbear-joe"
+
+# ─── OPTIONAL ────────────────────────────────────────────────────────────────
+
+# Your SwaggerHub organization name (skills can also auto-detect this)
+organization: ""
+
+# Portal configuration
+portal:
+  id: ""
+  defaultProduct: ""
+  autoPublish: false
+
+# GitHub settings
+github:
+  remote: "origin"
+  branch: "main"

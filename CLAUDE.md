@@ -1,6 +1,41 @@
 # Smartbear Swagger Skills for Claude Code
 
-This repository contains Claude Code skills for the Smartbear Swagger/SwaggerHub MCP integration. Skills automate the full API lifecycle: generate, validate, publish, and document.
+This repository contains Claude Code skills for the Smartbear Swagger/SwaggerHub MCP integration. Skills automate the full API lifecycle: generate, validate, publish, document, manage users, and configure integrations.
+
+## Quick Setup (2 steps)
+
+### 1. Edit `swagger-config.yml`
+
+Open `swagger-config.yml` in the root of this repo and set the two required values:
+
+```yaml
+swaggerhub_api_key: "YOUR_API_KEY_HERE"   # from https://app.swaggerhub.com/settings/apiKey
+mcp_server_name: "smartbear-joe"          # the name you gave the MCP in Claude Code settings
+```
+
+### 2. Configure the MCP Server in Claude Code
+
+Edit `~/.claude/settings.json` (Windows: `C:\Users\YourName\.claude\settings.json`):
+
+```json
+{
+  "mcpServers": {
+    "smartbear-joe": {
+      "command": "npx",
+      "args": ["-y", "@smartbear/smartbear-mcp"],
+      "env": {
+        "SWAGGERHUB_API_KEY": "your-api-key-here"
+      }
+    }
+  }
+}
+```
+
+> The `mcp_server_name` in `swagger-config.yml` must match the key you use here (`"smartbear-joe"` by default). If you name your MCP server something different, update both places.
+
+Restart Claude Code, then verify with: `List my Swagger organizations`
+
+---
 
 ## Skills Available
 
@@ -10,6 +45,9 @@ This repository contains Claude Code skills for the Smartbear Swagger/SwaggerHub
 | **Validate & Standardize** | `.claude/skills/swagger-validate.md` | "validate/scan/standardize spec" |
 | **Portal Management** | `.claude/skills/swagger-portal.md` | "update/publish portal docs" |
 | **Create from Prompt** | `.claude/skills/swagger-create.md` | "create new API in SwaggerHub" |
+| **User Management** | `.claude/skills/swagger-users.md` | "invite/remove/list users or members" |
+| **Domain Management** | `.claude/skills/swagger-domains.md` | "create/update/fork domain" |
+| **Integration Management** | `.claude/skills/swagger-integrations.md` | "create/trigger/list integrations" |
 
 ## Quick Prompts
 
@@ -28,27 +66,23 @@ Update the portal documentation for the payments API and publish live
 
 # Standardize existing API
 Standardize the customer-orders API in SwaggerHub
+
+# User management
+List all members of my SwaggerHub organization
+Invite alice@example.com to my org
+Remove bob@example.com from the org
+Give carol@example.com editor access on the payments-api
+
+# Domain management
+List all domains in my org
+Create a new domain called common-schemas with Address and Money components
+Fork the error-responses domain into a new version 2.0.0
+
+# Integration management
+List integrations on the orders-api version 1.0.0
+Set up a GitHub sync integration for the payments-api
+Trigger the GitHub sync integration on orders-api now
 ```
-
-## MCP Server Setup
-
-The Smartbear MCP server must be running. Configure it in your Claude Code MCP settings:
-
-```json
-{
-  "mcpServers": {
-    "smartbear-joe": {
-      "command": "npx",
-      "args": ["-y", "@smartbear/smartbear-mcp"],
-      "env": {
-        "SWAGGERHUB_API_KEY": "your-api-key-here"
-      }
-    }
-  }
-}
-```
-
-Get your API key from [SwaggerHub Settings > API Key](https://app.swaggerhub.com/settings/apiKey).
 
 ## Project Structure
 
@@ -88,3 +122,6 @@ All tools are prefixed `mcp__smartbear-joe__swagger_`:
 - SwaggerHub creates APIs at version `1.0.0` by default
 - Portal changes require explicit `publish_portal_product` to go live
 - Use `preview: true` when testing portal changes before publishing
+- User management, domain, and integration skills call the SwaggerHub REST API directly via `curl` using `swaggerhub_api_key` from `swagger-config.yml`
+- Available access control roles: `OWNER`, `EDITOR`, `VIEWER`
+- Integration types include: `GITHUB_SYNC`, `GITLAB_PUSH`, `BITBUCKET_PUSH`, `AWS_API_GATEWAY_IMPORT`, `WEBHOOK`
