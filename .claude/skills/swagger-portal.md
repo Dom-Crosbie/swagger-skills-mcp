@@ -8,22 +8,7 @@ allowedTools:
   - Write
   - Edit
   - Glob
-  - mcp__smartbear-joe__swagger_list_portals
-  - mcp__smartbear-joe__swagger_get_portal
-  - mcp__smartbear-joe__swagger_update_portal
-  - mcp__smartbear-joe__swagger_create_portal
-  - mcp__smartbear-joe__swagger_list_portal_products
-  - mcp__smartbear-joe__swagger_get_portal_product
-  - mcp__smartbear-joe__swagger_create_portal_product
-  - mcp__smartbear-joe__swagger_update_portal_product
-  - mcp__smartbear-joe__swagger_delete_portal_product
-  - mcp__smartbear-joe__swagger_list_portal_product_sections
-  - mcp__smartbear-joe__swagger_publish_portal_product
-  - mcp__smartbear-joe__swagger_create_table_of_contents
-  - mcp__smartbear-joe__swagger_list_table_of_contents
-  - mcp__smartbear-joe__swagger_delete_table_of_contents
-  - mcp__smartbear-joe__swagger_update_document
-  - mcp__smartbear-joe__swagger_get_document
+  - mcp__smartbear-joe__swagger_*
 ---
 
 # Swagger Portal Management Skill

@@ -6,7 +6,7 @@ applyTo:
 allowedTools:
   - Read
   - Bash
-  - mcp__smartbear-joe__swagger_list_organizations
+  - mcp__smartbear-joe__swagger_*
 ---
 
 # Manage SwaggerHub Users

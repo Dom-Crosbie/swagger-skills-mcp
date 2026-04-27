@@ -7,12 +7,7 @@ allowedTools:
   - Read
   - Write
   - Glob
-  - mcp__smartbear-joe__swagger_list_organizations
-  - mcp__smartbear-joe__swagger_create_api_from_prompt
-  - mcp__smartbear-joe__swagger_create_or_update_api
-  - mcp__smartbear-joe__swagger_get_api_definition
-  - mcp__smartbear-joe__swagger_scan_api_standardization
-  - mcp__smartbear-joe__swagger_search_apis_and_domains
+  - mcp__smartbear-joe__swagger_*
 ---
 
 # Create API in SwaggerHub Skill
