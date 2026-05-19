@@ -14,6 +14,7 @@ The plugin bundles the Smartbear MCP server alongside skills, enabling direct co
 | swagger-hub | **swagger-validate** | Scan any OpenAPI spec against organization governance rules and fix violations |
 | swagger-hub | **swagger-portal** | Manage Developer Portal products, documentation, table of contents, and publishing |
 | swagger-hub | **swagger-create** | Create a new API in SwaggerHub from a natural language prompt or existing spec file |
+| swagger-hub | **swagger-drift** | Contract testing with Drift CLI: fetch specs from SwaggerHub, generate tests, verify APIs against OpenAPI specs, publish to PactFlow |
 
 ---
 
@@ -35,6 +36,10 @@ Update the portal documentation for the payments API and publish live
 
 ```
 Create a new API in SwaggerHub for a user authentication service
+```
+
+```
+Create Drift contract tests for the products-api in SwaggerHub and verify against the live API
 ```
 
 ---

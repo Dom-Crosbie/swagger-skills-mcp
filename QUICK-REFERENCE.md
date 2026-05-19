@@ -17,6 +17,11 @@ Update the [API name] to add [feature or endpoint]
 Validate my OpenAPI spec at [path] against governance rules
 ```
 
+### 🧪 Contract Testing (Drift)
+```
+Create Drift tests for the [API name] in SwaggerHub and verify against the live API
+```
+
 ### 📚 Update Documentation
 ```
 Update the portal documentation for [API name]
@@ -42,8 +47,9 @@ List products in portal [portal-id]
 | 2. Validate | Check governance compliance | `scan_api_standardization` |
 | 3. Fix | Auto-correct violations | `standardize_api` |
 | 4. Upload | Publish to SwaggerHub | `create_or_update_api` |
-| 5. Portal | Update documentation | `publish_portal_product` |
-| 6. Git | Commit and push | `run_in_terminal` (git) |
+| 5. Contract Test | Verify API against spec with Drift | Drift CLI, `generate_result` |
+| 6. Portal | Update documentation | `publish_portal_product` |
+| 7. Git | Commit and push | `run_in_terminal` (git) |
 
 ## Key MCP Tools
 

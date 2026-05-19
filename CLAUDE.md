@@ -10,6 +10,7 @@ This repository contains Claude Code skills for the Smartbear Swagger/SwaggerHub
 | **Validate & Standardize** | `.claude/skills/swagger-validate.md` | "validate/scan/standardize spec" |
 | **Portal Management** | `.claude/skills/swagger-portal.md` | "update/publish portal docs" |
 | **Create from Prompt** | `.claude/skills/swagger-create.md` | "create new API in SwaggerHub" |
+| **Drift Contract Testing** | `.claude/skills/swagger-drift.md` | "drift test/verify API/contract test" |
 
 ## Quick Prompts
 
@@ -28,6 +29,9 @@ Update the portal documentation for the payments API and publish live
 
 # Standardize existing API
 Standardize the customer-orders API in SwaggerHub
+
+# Contract testing
+Create Drift tests for the products-api in SwaggerHub and verify against the live API
 ```
 
 ## MCP Server Setup
@@ -56,6 +60,7 @@ Get your API key from [SwaggerHub Settings > API Key](https://app.swaggerhub.com
 .claude/
   skills/
     swagger-api.md       # Full lifecycle workflow
+    swagger-drift.md     # Drift contract testing
     swagger-validate.md  # Governance validation
     swagger-portal.md    # Portal documentation
     swagger-create.md    # Create new APIs

@@ -18,24 +18,28 @@ The agent connects to SwaggerHub through MCP tools enabling:
 - Automated governance scanning and violation auto-fix
 - SwaggerHub registry create/update operations
 - Developer Portal product and documentation management
+- Drift contract testing against OpenAPI specifications
+- Bi-Directional Contract Testing (BDCT) with PactFlow integration
 - Atomic git commits pairing code with spec changes
 
 ## Guidance Architecture
 
-Four task-specific skills guide interactions:
+Five task-specific skills guide interactions:
 
 - **swagger-api** — Full lifecycle orchestration: generate → validate → publish → portal → git
 - **swagger-validate** — Governance scanning and standardization only
 - **swagger-portal** — Developer Portal product and documentation management
 - **swagger-create** — Create new APIs from prompts or register existing specs
+- **swagger-drift** — Contract testing with Drift CLI: fetch specs, generate tests, verify APIs, publish results
 
 ## Steering Guides
 
-Three workflow steering documents provide deep task context:
+Four workflow steering documents provide deep task context:
 
 - **build-and-publish.md** — End-to-end API build, validation, and SwaggerHub publication
 - **portal-sync.md** — Developer Portal update and publish workflow
 - **governance.md** — Governance scanning, violation remediation, and re-validation
+- **drift-testing.md** — Contract testing workflow: fetch → test → verify → publish
 
 ## MCP Server
 
