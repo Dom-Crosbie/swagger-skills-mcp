@@ -1,6 +1,6 @@
 ---
 name: swagger-drift
-description: Verifies API implementations against OpenAPI specifications from SwaggerHub using Drift contract testing. Fetches specs from SwaggerHub Studio via MCP, generates comprehensive Drift test cases, runs verification against live or mock APIs, and publishes results. USE FOR: create Drift tests, verify API against OpenAPI spec, test API contract, check for spec drift, validate API implementation, generate contract tests from SwaggerHub spec, run API conformance testing, publish verification results to PactFlow. DO NOT USE FOR: general API testing without OpenAPI specs, load testing, security penetration testing, or UI testing.
+description: "Verifies API implementations against OpenAPI specifications from SwaggerHub using Drift contract testing. Fetches specs from SwaggerHub Studio via MCP, generates comprehensive Drift test cases, runs verification against live or mock APIs, and publishes results. USE FOR: create Drift tests, verify API against OpenAPI spec, test API contract, check for spec drift, validate API implementation, generate contract tests from SwaggerHub spec, run API conformance testing, publish verification results to PactFlow. DO NOT USE FOR: general API testing without OpenAPI specs, load testing, security penetration testing, or UI testing."
 applyTo:
   - kind: file
     pattern: "**/*{drift,openapi,swagger,oas}.{yaml,json}"
@@ -16,7 +16,7 @@ allowedTools:
   - list_dir
   - run_in_terminal
   - get_terminal_output
-  - mcp_smartbear-mcp_swagger_*
+  - mcp_smartbear-joe_swagger_*
   - tool_search
 ---
 

@@ -1,6 +1,14 @@
 ---
 name: swagger-validate
 description: "Validates OpenAPI specs against Smartbear SwaggerHub organization governance rules and auto-fixes violations. USE FOR: validate OpenAPI spec, scan governance, fix violations, standardize API, check compliance."
+allowedTools:
+  - read_file
+  - replace_string_in_file
+  - create_file
+  - grep_search
+  - file_search
+  - semantic_search
+  - mcp_smartbear-joe_swagger_*
 ---
 
 # SwaggerHub Governance Validation Skill

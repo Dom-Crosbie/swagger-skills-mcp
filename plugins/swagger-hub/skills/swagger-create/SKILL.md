@@ -1,6 +1,15 @@
 ---
 name: swagger-create
 description: "Creates new APIs in SwaggerHub from natural language prompts or existing OpenAPI spec files. USE FOR: create API from prompt, register OpenAPI spec, generate API spec, new SwaggerHub API."
+allowedTools:
+  - read_file
+  - replace_string_in_file
+  - create_file
+  - grep_search
+  - file_search
+  - semantic_search
+  - run_in_terminal
+  - mcp_smartbear-joe_swagger_*
 ---
 
 # SwaggerHub API Creation Skill

@@ -1,6 +1,19 @@
 ---
 name: swagger-api
 description: "End-to-end API lifecycle management with Smartbear SwaggerHub — generate API code, validate governance, publish to SwaggerHub registry, sync Developer Portal documentation, and push to GitHub. USE FOR: build API, create API, update API, full API lifecycle development, swagger, OpenAPI."
+allowedTools:
+  - read_file
+  - replace_string_in_file
+  - multi_replace_string_in_file
+  - create_file
+  - grep_search
+  - file_search
+  - semantic_search
+  - list_dir
+  - run_in_terminal
+  - get_terminal_output
+  - get_errors
+  - mcp_smartbear-joe_swagger_*
 ---
 
 # SwaggerHub API Lifecycle Skill

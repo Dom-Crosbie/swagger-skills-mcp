@@ -1,6 +1,14 @@
 ---
 name: swagger-portal
 description: "Manages Smartbear Developer Portal products, documentation, table of contents, and publishing. USE FOR: update portal docs, create portal product, publish API documentation, sync developer portal, SwaggerHub portal."
+allowedTools:
+  - read_file
+  - replace_string_in_file
+  - create_file
+  - grep_search
+  - file_search
+  - semantic_search
+  - mcp_smartbear-joe_swagger_*
 ---
 
 # SwaggerHub Developer Portal Skill

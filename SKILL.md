@@ -1,6 +1,6 @@
 ---
 name: swagger-skills-mcp
-description: End-to-end API development workflow with Smartbear Swagger integration. Generates API code, validates against governance rules, updates OpenAPI specs, synchronizes portal documentation, and publishes to GitHub. USE FOR: build API, create API, update API with governance, standardize API, validate API spec, sync Swagger documentation, publish API to portal, API development workflow. DO NOT USE FOR: general coding tasks without API/Swagger context, frontend UI development, database schema design.
+description: "End-to-end API development workflow with Smartbear Swagger integration. Generates API code, validates against governance rules, updates OpenAPI specs, synchronizes portal documentation, and publishes to GitHub. USE FOR: build API, create API, update API with governance, standardize API, validate API spec, sync Swagger documentation, publish API to portal, API development workflow. DO NOT USE FOR: general coding tasks without API/Swagger context, frontend UI development, database schema design."
 applyTo:
   - kind: file
     pattern: "**/*.{ts,js,py,java,cs,go}"
