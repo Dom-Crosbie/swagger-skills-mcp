@@ -1,3 +1,8 @@
+---
+name: swagger-create
+description: "Creates new APIs in SwaggerHub from natural language prompts or existing OpenAPI spec files. USE FOR: create API from prompt, register OpenAPI spec, generate API spec, new SwaggerHub API."
+---
+
 # SwaggerHub API Creation Skill
 
 I'm ready to create a new API in SwaggerHub — either by generating a spec from your natural language description, or by registering an existing OpenAPI file.

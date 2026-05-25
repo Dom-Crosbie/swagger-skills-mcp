@@ -1,3 +1,8 @@
+---
+name: swagger-api
+description: "End-to-end API lifecycle management with Smartbear SwaggerHub — generate API code, validate governance, publish to SwaggerHub registry, sync Developer Portal documentation, and push to GitHub. USE FOR: build API, create API, update API, full API lifecycle development, swagger, OpenAPI."
+---
+
 # SwaggerHub API Lifecycle Skill
 
 I'm ready to help you build, validate, and publish APIs end-to-end using Smartbear's SwaggerHub and Developer Portal.

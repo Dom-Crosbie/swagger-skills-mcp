@@ -1,3 +1,8 @@
+---
+name: swagger-portal
+description: "Manages Smartbear Developer Portal products, documentation, table of contents, and publishing. USE FOR: update portal docs, create portal product, publish API documentation, sync developer portal, SwaggerHub portal."
+---
+
 # SwaggerHub Developer Portal Skill
 
 I'm ready to manage your Smartbear Developer Portal — create products, update documentation, manage table of contents, and publish live or to preview.
