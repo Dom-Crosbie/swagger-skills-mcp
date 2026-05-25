@@ -21,10 +21,10 @@ I'm ready to validate your OpenAPI spec against your organization's governance r
 ## Workflow
 
 ```
-1. mcp__smartbear-mcp__swagger_list_organizations       → get org name
+1. mcp__smartbear-joe__swagger_list_organizations       → get org name
 2. Read spec file (from path or search common locations)
-3. mcp__smartbear-mcp__swagger_scan_api_standardization → scan for violations
-4. mcp__smartbear-mcp__swagger_standardize_api          → auto-fix (if published)
+3. mcp__smartbear-joe__swagger_scan_api_standardization → scan for violations
+4. mcp__smartbear-joe__swagger_standardize_api          → auto-fix (if published)
 5. Re-scan to verify compliance
 ```
 

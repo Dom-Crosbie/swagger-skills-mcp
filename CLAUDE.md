@@ -41,7 +41,7 @@ The Smartbear MCP server must be running. Configure it in your Claude Code MCP s
 ```json
 {
   "mcpServers": {
-    "smartbear-mcp": {
+    "smartbear-joe": {
       "command": "npx",
       "args": ["-y", "@smartbear/smartbear-mcp"],
       "env": {
@@ -71,7 +71,7 @@ SKILL.md                 # Legacy skill definition (VS Code format)
 
 ## Smartbear MCP Tools
 
-All tools are prefixed `mcp__smartbear-mcp__swagger_`:
+All tools are prefixed `mcp__smartbear-joe__swagger_`:
 
 - `list_organizations` — get your org names (required for most operations)
 - `create_api_from_prompt` — generate an API spec from natural language

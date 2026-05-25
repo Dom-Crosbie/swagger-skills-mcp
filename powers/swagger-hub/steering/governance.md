@@ -23,13 +23,13 @@ If not found, ask the user for the path.
 
 ### 2. Get Organization Name
 ```
-orgs = mcp__smartbear-mcp__swagger_list_organizations()
+orgs = mcp__smartbear-joe__swagger_list_organizations()
 ```
 Organization names are **case-sensitive**. Use the exact value returned.
 
 ### 3. Scan for Violations
 ```
-result = mcp__smartbear-mcp__swagger_scan_api_standardization(
+result = mcp__smartbear-joe__swagger_scan_api_standardization(
   organization: orgName,
   definition: specContent  // full YAML/JSON as string
 )
@@ -55,7 +55,7 @@ Organization: {orgName}
 
 **Option A — Auto-standardize** (API already in SwaggerHub):
 ```
-mcp__smartbear-mcp__swagger_standardize_api(owner, apiName)
+mcp__smartbear-joe__swagger_standardize_api(owner, apiName)
 ```
 Retrieve the corrected spec and update the local file.
 
