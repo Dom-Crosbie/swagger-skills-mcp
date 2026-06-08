@@ -1,0 +1,98 @@
+name: Spectral API Governance
+
+on:
+  push:
+    branches:
+      - main
+      - "**"
+    paths:
+      - "**.yaml"
+      - "**.yml"
+      - "**.json"
+      - ".spectral.yml"
+  pull_request:
+    paths:
+      - "**.yaml"
+      - "**.yml"
+      - "**.json"
+      - ".spectral.yml"
+  workflow_dispatch:
+    inputs:
+      spec_path:
+        description: "Path or glob to the OpenAPI spec(s) to lint"
+        required: false
+        default: "**/*.yaml"
+
+jobs:
+  spectral-lint:
+    name: Lint OpenAPI specs (Regex Governance Rules)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Spectral CLI
+        run: npm install -g @stoplight/spectral-cli
+
+      - name: Find OpenAPI specs
+        id: find-specs
+        run: |
+          SPEC_PATH="${{ github.event.inputs.spec_path || '**/*.yaml **/*.yml' }}"
+          # Find YAML/JSON files that look like OpenAPI specs
+          SPECS=$(find . \
+            -not -path '*/.git/*' \
+            -not -path '*/node_modules/*' \
+            -not -name '.spectral.yml' \
+            \( -name '*.yaml' -o -name '*.yml' -o -name '*.json' \) \
+            -exec grep -l '"openapi"\|openapi:' {} \; 2>/dev/null || true)
+
+          if [ -z "$SPECS" ]; then
+            echo "No OpenAPI specs found — skipping lint."
+            echo "specs_found=false" >> $GITHUB_OUTPUT
+          else
+            echo "Found specs:"
+            echo "$SPECS"
+            echo "specs_found=true" >> $GITHUB_OUTPUT
+            echo "specs<<EOF" >> $GITHUB_OUTPUT
+            echo "$SPECS" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Spectral governance rules
+        if: steps.find-specs.outputs.specs_found == 'true'
+        run: |
+          FAILED=0
+          while IFS= read -r spec; do
+            echo "──────────────────────────────────────────"
+            echo "Linting: $spec"
+            echo "──────────────────────────────────────────"
+            spectral lint "$spec" \
+              --ruleset .spectral.yml \
+              --format pretty \
+              --fail-severity error || FAILED=1
+          done <<< "${{ steps.find-specs.outputs.specs }}"
+
+          if [ "$FAILED" -eq 1 ]; then
+            echo ""
+            echo "❌ One or more specs failed governance checks."
+            echo "   Ensure CountryAlpha2Code, LeiType, and AnyBicType schemas"
+            echo "   use the canonical patterns defined in .spectral.yml"
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ All specs passed governance checks."
+
+      - name: Upload lint results
+        if: always() && steps.find-specs.outputs.specs_found == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: spectral-results
+          path: spectral-results.txt
+          if-no-files-found: ignore
